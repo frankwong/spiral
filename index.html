@@ -1,0 +1,61 @@
+<html>
+<head>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(start);
+
+        function start() {
+            console.log('Start');
+            var xOrigin = $("#main").height()/2;
+            var yOrigin = $("#main").width()/2;
+            var x = xOrigin;
+            var y = yOrigin;
+            var xInc, xInc;
+            var dots = 10000;
+
+            var newDot = $("<div class='dot'></div>").css({
+                top: xOrigin,
+                left: yOrigin
+            });
+            $("#main").prepend(newDot);
+
+            for (var i=1; i<dots; i++) {
+//                    console.log(Math.sin( i/10 * Math.PI ));
+                    xInc = Math.sin( i/100 * Math.PI ) * i/10;
+                    yInc = Math.cos( i/100 * Math.PI ) * i/10;
+                    x = xOrigin + xInc;
+                    y = yOrigin + yInc;
+
+//                    console.log("x: " + x);
+//                    console.log("y: " + y);
+
+                    newDot = $("<div class='dot'></div>").css({
+                        top: x,
+                        left: y
+                    });
+                    $("#main").prepend(newDot);
+            }
+        }
+    </script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        #main{
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+        .dot{
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">Spiral</div>
+</body>
+</html>
